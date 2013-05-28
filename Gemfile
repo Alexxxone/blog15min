@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '1.9.3'
 gem 'rails', '3.2.13'
 
 group :development do
@@ -20,4 +20,10 @@ gem 'jquery-rails', '2.0.2'
 
 group :production do
   gem 'pg', '0.12.2'
-endgit
+end
+# Authentication gems
+gem 'devise'
+gem 'devise_invitable'
+gem "cancan"
+
+
