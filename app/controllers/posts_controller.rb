@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
-
+      before_filter :authenticate_user!, :only=>[:edit]    #вторым передается для каких экшенов будет работать
   def index
     @posts = Post.not_hidden
 
