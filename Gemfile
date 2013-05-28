@@ -2,10 +2,7 @@ source 'https://rubygems.org'
 ruby '1.9.3'
 gem 'rails', '3.2.13'
 
-group :development do
-  gem 'sqlite3', '1.3.5'
-end
-
+gem 'pg'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -18,9 +15,7 @@ end
 
 gem 'jquery-rails', '2.0.2'
 
-group :production do
-  gem 'pg', '0.12.2'
-end
+
 # Authentication gems
 gem 'devise'
 gem 'devise_invitable'

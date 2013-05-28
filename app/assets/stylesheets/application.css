@@ -12,24 +12,25 @@
  *= require_tree .
  */
   .post_header{
+
       color:green;
+      height:280px;
+      background-image: url("/assets/header.png/");
+      border-radius: 10px;
   }
-table{
-    border-collapse:collapse ;
-    border:1px solid black;
-}
-.table_head th {
-    background-color:lightgrey;
-    border:1px solid black;
+.welc{
+    text-transform: uppercase;
+    position:absolute;
+    margin-top:160px;
+    margin-left:310px;
 }
 
-.table_body td, .table_head th{
-    padding:20px;
-    border:1px solid black;
-}
-.table_body:nth-child(odd){
+tbody:nth-child(odd){
     background-color:lightblue;
 }
 .unknow_user_img{
     float:right;
+}
+textarea{
+    resize: none;" cols="30" rows="3"
 }

@@ -1,27 +1,29 @@
-<h1 class = "post_header">List of all posts on this site</h1>
+<div class="row-fluid">
+ <div class = "well">
+   <h1 class="post_header"><span class = 'welc'>Welcome on my first blog</span></h1>
+  </div>
 
-<table>
-  <tr class = "table_head">
-    <th>Title</th>
-    <th>Body</th>
-    <th>Data</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <div class = "span10">
+    <%= link_to 'New Post', new_post_path ,class:"btn btn-small" %>
+  </div>
+  <div class='span3 pull-right'>
+    <img src = 'assets/1.jpeg' alt = 'img'/>
+  </div>
+      <% @posts.each do |post| %>
 
-<% @posts.each do |post| %>
-  <tr class = "table_body">
-    <td><%= post.title %></td>
-    <td><%= post.body %></td>
-    <td><%= post.data %></td>
-    <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+      <div class='span8'>
+        <h4><%= post.title %></h4>
+        <p><span class = 'bold'>Posted :</span><%= post.data.day %></p>
+        <p><%= post.body %></p>
 
-<br />
+       <p> <%= link_to 'Show', post,class:"btn btn-small" %>
+        <%= link_to 'Edit', edit_post_path(post) ,class:"btn btn-small"%>
+        <%= link_to 'Destroy', post,class:"btn btn-small", method: :delete, data: {confirm: 'Are you sure?'} %>
+        </p>
+      </div>
+      <% end %>
 
-<%= link_to 'New Post', new_post_path %>
+
+</div>
+
+
