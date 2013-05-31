@@ -43,15 +43,22 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(params[:post])
 
+  if  @post.title.length <20
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to @post, notice: 'Post was successfully created' }
         format.json { render json: @post, status: :created, location: @post }
       else
         format.html { render action: "new" }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+  else
+    respond_to do |format|
+    format.html { redirect_to @post, notice: 'ERROR title was to long' }
+    format.json { render json: @post, status: :created, location: @post }
+    end
+  end
   end
 
   # PUT /posts/1

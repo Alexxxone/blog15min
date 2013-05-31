@@ -13,3 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+$(document).ready(function(){
+
+    $(".new_post_input").focus(function() {
+       $(".maxsymbols").css('color','blue').fadeIn(800).delay(800).fadeOut(800);
+    });
+})
