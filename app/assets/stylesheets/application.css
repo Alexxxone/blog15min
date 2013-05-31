@@ -30,12 +30,18 @@
     margin-top:160px;
     margin-left:310px;
 }
-
-tbody:nth-child(odd){
+.post_body{
+    padding:5px;
+}
+.post_body:nth-child(odd){
     background-color:lightblue;
+    border:1px solid lightgrey;
+    border-radius:5px;
+    box-shadow:0px 0px 5px lightgrey;
 }
 .unknow_user_img{
   position:absolute;
+
 }
 textarea{
     resize: none;" cols="30" rows="3"
