@@ -20,4 +20,14 @@ $(document).ready(function(){
     $(".new_post_input").focus(function() {
        $(".maxsymbols").css('color','blue').fadeIn(800).delay(800).fadeOut(800);
     });
+
+
+    $('a.remote-delete').click(function() {
+        $.post(this.href, { _method: 'delete' }, null, "script");
+        var id = $(this).attr('name')
+        $(".post_with"+id+"delete").hide();
+        return false;
+    });
 })
+
+
