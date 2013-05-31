@@ -12,8 +12,12 @@
       <p><%= post.body %></p>
 
       <p> <%= link_to 'Show', post, class: "btn btn-small" %>
-        <%= link_to 'Edit', edit_post_path(post), class: "btn btn-small" %>
-        <%= link_to 'Destroy', post, class: "btn btn-small", method: :delete, data: {confirm: 'Are you sure?'} %>
+        <%- if !current_user.nil? %>
+            <%- if current_user.id == post.user_id %>
+                <%= link_to 'Edit', edit_post_path(post), class: "btn btn-small" %>
+                <%= link_to 'Destroy', post, class: "btn btn-small", method: :delete, data: {confirm: 'Are you sure?'} %>
+            <%- end %>
+        <%- end%>
       </p>
     </div>
 <% end %>

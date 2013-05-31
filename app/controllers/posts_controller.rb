@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
-      before_filter :authenticate_user!, :only=>[:edit]    #вторым передается для каких экшенов будет работать
+      before_filter :authenticate_user!, :only=>[:edit,:new,:destroy,:create,:update]    #вторым передается для каких экшенов будет работать
   def index
     @posts = Post.not_hidden
 
@@ -35,13 +35,13 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    @post = Post.find(params[:id])
+      @post = Post.find(params[:id])
   end
 
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(params[:post])
+    @post = current_user.posts.build(params[:post])
 
     respond_to do |format|
       if @post.save
@@ -59,14 +59,16 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
 
-    respond_to do |format|
-      if @post.update_attributes(params[:post])
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+
+      respond_to do |format|
+        if current_user.id == @post.user_id  && @post.update_attributes(params[:post])
+          format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html {  redirect_to @post, notice: 'ACCESS DENIED' }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+        end
+
     end
   end
 

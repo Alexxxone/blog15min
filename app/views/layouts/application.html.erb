@@ -15,10 +15,11 @@
     <%= link_to 'Home', posts_path ,class:"btn btn-small home" %>
     <%- if current_user.nil? %>
         <%= link_to('Sign in', new_user_session_path, class: "btn btn-small pull-right" ) %>
-        <span>or</span>
+        <span class = 'home pull-right'>or</span>
         <%= link_to('Sign up', new_user_registration_path, class: "btn btn-small pull-right" ) %>
 
     <% else %>
+       <span class="pull-right" style = "margin-left:10px;"> <%=  current_user.email  %></span>
         <%= link_to 'New Post', new_post_path, class: "btn btn-small" %>
         <%= link_to("Sign out", destroy_user_session_path, :method => 'delete', class: "btn btn-small pull-right") %>
     <%- end %>
@@ -27,8 +28,10 @@
 
 
 
-  <div class='span3 pull-right'>
+   <div class='span3 pull-right'>
     <%= image_tag "1.jpeg"%>
+
+
   </div>
   <div style="width: 70%">
   <%= yield %>

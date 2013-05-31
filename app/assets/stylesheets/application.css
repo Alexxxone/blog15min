@@ -12,6 +12,7 @@
  *= require_tree .
  */
 .home{
+    margin-left:10px;
     margin-right:10px;
 }
   .post_header{
