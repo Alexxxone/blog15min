@@ -1,5 +1,11 @@
-<h1>New post</h1>
+<div class = 'row-fluid'>
+  <div class = 'offset5'>
+    <h1>New post</h1>
+    </div>
+    <div class = 'span11'>
 
-<%= render 'form' %>
-<img src = "/images/user.jpeg" alt = 'some picture' class = "unknow_user_img"/>
-<%= link_to 'Back', posts_path %>
+      <img src = "/images/user.jpeg" alt = 'some picture' class = "unknow_user_img pull-right"/>
+        <%= render 'form' %>
+
+    </div>
+</div>

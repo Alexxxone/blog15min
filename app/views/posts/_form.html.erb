@@ -1,4 +1,6 @@
-<%= form_for(@post) do |f| %>
+
+  <div class = 'span10'>
+  <%= form_for(@post) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -12,18 +14,23 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
+    <%= f.label :body %>
+    <%= f.text_area :body ,style:"height:300px;" %>
   </div>
   <div class="field">
-    <%= f.label :data %><br />
+    <%= f.label :date %>
     <%= f.text_field :data %>
+
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class:"btn btn-small"%>
+    <%= link_to 'Back', posts_path ,class:"btn btn-small"%>
   </div>
+
 <% end %>
+    </div>
+

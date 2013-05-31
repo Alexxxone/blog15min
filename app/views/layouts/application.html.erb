@@ -9,21 +9,28 @@
 <body>
 <div class="row-fluid">
   <div class="well">
-    <h1 class="post_header"><span class='welc'>Welcome <%= %>on my first blog</span></h1>
+ <h1 class="post_header">
+        <span class='welc'>Welcome on my first blog</span>
+ </h1>
+    <%= link_to 'Home', posts_path ,class:"btn btn-small home" %>
+    <%- if current_user.nil? %>
+        <%= link_to('Sign in', new_user_session_path, class: "btn btn-small pull-right" ) %>
+        <span>or</span>
+        <%= link_to('Sign up', new_user_registration_path, class: "btn btn-small pull-right" ) %>
+
+    <% else %>
+        <%= link_to 'New Post', new_post_path, class: "btn btn-small" %>
+        <%= link_to("Sign out", destroy_user_session_path, :method => 'delete', class: "btn btn-small pull-right") %>
+    <%- end %>
+
   </div>
 
-  <%- if current_user.nil? %>
-      <%= link_to('Sign in', new_user_session_path) %>
-      <span>or</span>
-      <%= link_to('Sign up', new_user_registration_path) %>
-  <% else %>
-      <%= link_to("Sign out", destroy_user_session_path, :method => 'delete') %>
-  <%- end %>
+
 
   <div class='span3 pull-right'>
     <%= image_tag "1.jpeg"%>
   </div>
-  <div style="width: 80%">
+  <div style="width: 70%">
   <%= yield %>
        </div>
 </div>

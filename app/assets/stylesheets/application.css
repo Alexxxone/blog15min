@@ -11,6 +11,9 @@
  *= require_self
  *= require_tree .
  */
+.home{
+    margin-right:10px;
+}
   .post_header{
 
       color:green;
@@ -19,6 +22,8 @@
       border-radius: 10px;
   }
 .welc{
+    color:white;
+    text-shadow:0px 0px 20px green;
     text-transform: uppercase;
     position:absolute;
     margin-top:160px;
@@ -29,7 +34,7 @@ tbody:nth-child(odd){
     background-color:lightblue;
 }
 .unknow_user_img{
-    float:right;
+  position:absolute;
 }
 textarea{
     resize: none;" cols="30" rows="3"
