@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Blog15min</title>
-  <%= stylesheet_link_tag "application", :media => "all" %>
+   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -21,21 +21,42 @@
     <% else %>
        <span class="pull-right" style = "margin-left:10px;"> <%=  current_user.email  %></span>
         <%= link_to 'New Post', new_post_path, class: "btn btn-small" %>
+        <%= link_to 'Posts waiting to be approved',wait_path, class: "btn btn-small" %>
+
         <%= link_to("Sign out", destroy_user_session_path, :method => 'delete', class: "btn btn-small pull-right") %>
     <%- end %>
 
   </div>
 
+  <% if notice %>
+      <span class="notice"><%= notice %></span>
 
+  <% end %>
+  <% if alert %>
+      <span class="alert" ><%= alert %>   </span>
 
-   <div class='span3 pull-right'>
-    <%= image_tag "1.jpeg"%>
+  <% end %>
 
+  <div class='span3 pull-right'>
+    <div id="tags">
+       <% @tags.each do |t|%>
+          <% if !t.name.blank? %>
+              <%= link_to t.name, posts_path(:tag_name=>t.name),:style => "font-size:12px;" %>
+          <% end %>
+      <%  end %>
 
+    </div>
   </div>
   <div style="width: 70%">
   <%= yield %>
        </div>
+
 </div>
+
+     <div class="well footer">
+    <%= link_to("Admin enter", admin_dashboard_path, class:"btn btn-small") %>
+  </div>
+
+
 </body>
 </html>

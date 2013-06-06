@@ -1,7 +1,5 @@
 <div class="row-fluid">
 
-  <p id="notice"><%= notice %></p>
-
   <div class='span11'>
     <h4><%= @post.title %></h4>
 
@@ -20,20 +18,12 @@
 </div>
 
 <div class='span11'>
-
   <div class='span11'>
-
     <%= form_for [@post, Comment.new ],:html=>{:class=>"form-inline"} do |f| %>
-
-
-
-
         <div class="input-append">
           <%= f.text_area :body, style: "height:39px;width:680px",:placeholder=>"Write your comment here" %>
           <%= f.submit "Add comment",class:"btn" ,style: " height:50px;" %>
         </div>
-
-
     <% end %>
 
   </div>
@@ -45,8 +35,6 @@
         <%= render :partial => 'comments/comment', :locals => {:comment => comment} %>
     <%- end %>
   </div>
-
-
 </div>
 
 

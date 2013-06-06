@@ -1,9 +1,15 @@
 class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
-      before_filter :authenticate_user!, :only=>[:edit,:new,:destroy,:create,:update]    #вторым передается для каких экшенов будет работать
+      before_filter :authenticate_user!, :only=>[:edit,:new,:destroy,:create,:update,:wait]
+
+
   def index
-    @posts = Post.not_hidden
+       if params[:tag_name]
+            @posts = Post.joins(:tags).where(:tags => {:name => params[:tag_name]})
+       else
+            @posts =Post.not_hidden.user_confirmed
+       end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,6 +32,7 @@ class PostsController < ApplicationController
   # GET /posts/new.json
   def new
     @post = Post.new
+    @post.tags.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,25 +48,30 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = current_user.posts.build(params[:post])
+    if current_user.posts.length >=3
+      respond_to do |format|
+        format.html { redirect_to posts_path, alert: 'You cannot create more than 3 unapproved posts' }
+     end
+    else
 
-  if  @post.title.length <20
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created' }
-        format.json { render json: @post, status: :created, location: @post }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+      @post = current_user.posts.find_or_create(params[:post])
+
+
+
+
+      respond_to do |format|
+        if @post.save
+          format.html { redirect_to @post, notice: 'Post was successfully created' }
+          format.json { render json: @post, status: :created, location: @post }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+        end
       end
     end
-  else
-    respond_to do |format|
-    format.html { redirect_to @post, notice: 'ERROR title was to long' }
-    format.json { render json: @post, status: :created, location: @post }
-    end
+
   end
-  end
+
 
   # PUT /posts/1
   # PUT /posts/1.json
@@ -84,6 +96,12 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+  end
+
+  def wait
+
+     @post = current_user.posts.waitingToApprove
+
   end
 
 

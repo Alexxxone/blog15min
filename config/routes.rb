@@ -1,16 +1,26 @@
 Blog15min::Application.routes.draw do
-  devise_for :users
   root :to => 'posts#index'
+
+  get 'posts/wait'
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
+  devise_for :users
+
   resources :posts do
     resources :comments
   end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
-
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
 
+    match 'posts/wait/' =>'posts#waitToApprove', :as=> :wait
+   # match 'posts/:tagname' =>'posts#index', :as=> :tagname
+  #  map.connect "posts/waitToApprove", :controller => 'posts', :action => 'waitToApprove'
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)

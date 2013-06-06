@@ -12,22 +12,38 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require bootstrap
+//= require cloud
+//= require swfobject
+
+
 
 
 $(document).ready(function(){
-
+    var bootstrapButton = $.fn.button.noConflict();
+    $.fn.bootstrapBtn = bootstrapButton;
     $(".new_post_input").focus(function() {
        $(".maxsymbols").css('color','blue').fadeIn(800).delay(800).fadeOut(800);
     });
-
-
     $('a.remote-delete').click(function() {
         $.post(this.href, { _method: 'delete' }, null, "script");
-        var id = $(this).attr('name')
+        var id = $(this).attr('name');
         $(".post_with"+id+"delete").hide();
         return false;
     });
 })
+
+function add_tag_form(){
+    input = $(".tag-name:last");
+    name = input.attr('name');
+    console.log(name);
+    var number =  Number(name.replace(/\D+/g,""))+1;
+    cloned_input =  input.clone().val('').attr('name','post[tags_attributes]['+number+'][name]');
+    $(input).after(cloned_input);
+    console.log(number);
+}
+function remove_tag_form(){
+    $('.tag-name:last').remove();
+}
 
 

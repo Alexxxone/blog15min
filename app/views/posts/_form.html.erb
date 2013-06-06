@@ -1,5 +1,5 @@
 
-  <div class = 'span10'>
+  <div class = 'span4'>
   <%= form_for(@post) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
@@ -26,11 +26,21 @@
     <%= f.text_field :data %>
 
   </div>
+  <div class="field tag_form">
+          <%= f.label "Tags" %>
+          <%= f.fields_for :tags, @post.tags.empty? ? Tag.new : @post.tags do |t|  %>
+            <%= t.text_field :name, class:'tag-name' %>
+          <% end %>
+
+  </div>
   <div class="actions">
-    <%= f.submit class:"btn btn-small"%>
+    <%= f.submit "Create Post",class:"btn"%>
     <%= link_to 'Back', posts_path ,class:"btn btn-small"%>
+
   </div>
 
 <% end %>
-    <button onclick="test('<%= :post %>')">test</button>
+    <button onclick='add_tag_form()'>Add field</button>
+    <button onclick='remove_tag_form()'>Remove field</button>
     </div>
+  <div></div>

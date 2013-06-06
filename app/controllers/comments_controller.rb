@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
   # GET /comments/1
   # GET /comments/1.json
   def show
-#    @post = Post.find(params[:post_id])
+    @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
 
     respond_to do |format|
@@ -42,9 +42,6 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @post = Post.find(params[:post_id])
-    puts "z"*200
-    puts @post.inspect
-    puts "z"*200
     @comment = @post.comments.new(params[:comment])
 
     respond_to do |format|
@@ -85,4 +82,5 @@ class CommentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end
