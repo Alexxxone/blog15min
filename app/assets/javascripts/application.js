@@ -28,22 +28,48 @@ $(document).ready(function(){
     $('a.remote-delete').click(function() {
         $.post(this.href, { _method: 'delete' }, null, "script");
         var id = $(this).attr('name');
+        countPosts();
         $(".post_with"+id+"delete").hide();
         return false;
     });
-})
+
+      $(".all_titles").mouseenter(function(){
+          $(this).css('overflow-y','scroll');
+      }).mouseleave(function() {
+              $(this).css('overflow-y','hidden');
+          });
+
+
+    countPosts();
+
+})  //end document ready
 
 function add_tag_form(){
     input = $(".tag-name:last");
-    name = input.attr('name');
-    console.log(name);
-    var number =  Number(name.replace(/\D+/g,""))+1;
-    cloned_input =  input.clone().val('').attr('name','post[tags_attributes]['+number+'][name]');
-    $(input).after(cloned_input);
-    console.log(number);
+    if( !input.val() == ''){
+        name = input.attr('name');
+        var number =  Number(name.replace(/\D+/g,""))+1;
+        cloned_input =  input.clone().val('').attr('name','post[tags_attributes]['+number+'][name]');
+        $(input).after(cloned_input).after("<span class='icon-minus' onclick=\"remove_tag_form(this)\"></span>");
+    };
 }
-function remove_tag_form(){
-    $('.tag-name:last').remove();
+
+function remove_tag_form(elem){
+    if($(elem).parent().find('input').length > 1){
+        $(elem).prev().remove();
+        $(elem).remove();
+    };
+}
+
+function countPosts(){
+    $.ajax({url:'/posts/count', dataType:"json", type: "post"
+    }).success(function(response){
+
+            $('#countwait').text('').append("Waiting to approve: "+response.countwait);
+            $('#countapproved').text('').append("Approved: "+response.countapproved);
+            $('#countwarning').text('').append("Warning: "+response.countwarning);
+
+     })
 }
 
 

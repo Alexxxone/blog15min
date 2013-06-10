@@ -19,6 +19,8 @@ Blog15min::Application.routes.draw do
   # Keep in mind you can assign values other than :controller and :action
 
     match 'posts/wait/' =>'posts#waitToApprove', :as=> :wait
+    match 'posts/count/' =>'posts#count'
+
    # match 'posts/:tagname' =>'posts#index', :as=> :tagname
   #  map.connect "posts/waitToApprove", :controller => 'posts', :action => 'waitToApprove'
   # Sample of named route:

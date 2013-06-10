@@ -1,0 +1,19 @@
+%div.offset1
+-@posts.each do |post|
+  %div{:class=>"span8 post_body post_with#{post.id}delete"}
+    %h4
+      =post.title
+    -post.tags.each do |fa|
+      -if !fa.name.blank?
+        %span{:class=>"tag_box"}
+          =link_to fa.name, posts_path(:tag_name => fa.name)
+    %p
+      =post.body
+    %p.pull-right{:style=>'font-weight:bold;font-size:10px;'}
+      Posted :
+      =time_ago_in_words(post.created_at)
+      ago
+    =link_to 'Show', post, class: "btn btn-small"
+    -if !current_user.nil?
+      =link_to 'Edit', edit_post_path(post), class: "btn btn-small"
+      =link_to 'Destroy', post, class: "btn btn-small remote-delete", data: {confirm: 'Are you sure?'}, name: post.id

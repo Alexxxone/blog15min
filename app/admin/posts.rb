@@ -1,20 +1,39 @@
 ActiveAdmin.register Post do
   filter :title
 
+  index do
+    column :id
+    column :title
+    column :body
+    column "Confirmed ?" do  |post|
+      if post.confirmed ==0
+        "no"
+      elsif post.confirmed ==1
+        "yes"
+      elsif post.confirmed ==2
+        "in progress"
+      end
+    end
+     default_actions
+    end
+
   action_item :only => :edit do
     link_to('Add Tag','javascript:void(0)',onclick:'AddAndRenameAdminInput()')
 
   end
+
   action_item :only => :edit do
   link_to('Remove Tag','javascript:void(0)',onclick:'RemoveAdminInput()')
   end
+
+
   form do |f|
     f.inputs "Post Details" do
       f.input :title
       f.input :body
     end
     f.inputs "Approved ?" do
-      f.check_box :confirmed,style:'margin-left:20px;'
+      f.input :confirmed, :as => :select ,:collection =>{'No'=>0, 'Yes'=>1,"Write message"=>2}
     end
     f.inputs "Tags" do
       f.fields_for :tags, post.tags.empty? ? Tag.new : post.tags do |tag|
@@ -27,5 +46,6 @@ ActiveAdmin.register Post do
   end
 
 
-
 end
+     # link_to 'Add Tag','javascript:void(0)',onclick:'AddAndRenameAdminInput()'
+     # link_to 'Remove Tag','javascript:void(0)',onclick:'RemoveAdminInput()'

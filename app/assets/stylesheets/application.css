@@ -53,12 +53,47 @@ textarea{
 }
 .tag_box{
     padding:2px;
-    background-color:lightgrey;
-    border:1px solid darkgrey;
+    background-color:#D9F8FA;
+    border:1px solid #93F0F5;
     border-radius:5px;
     box-shadow:0px 0px 5px lightgrey;
 }
-.tag-side .tag-box{
-
+.tag-side {
     margin:20px;
+}
+
+#all_titles {
+
+    position: absolute;
+    padding:10px;
+    right:50px;
+    top:600px;
+
+}
+#all_titles .all_titles{
+    width:300px;
+    height:200px;
+    overflow-y:hidden;
+    background-color:#D9F8FA;
+    border:1px solid lightblue;
+    border-radius:5px;
+    box-shadow:0px 0px 5px lightblue;
+}
+#all_titles h5{
+    margin-left:60px;
+}
+#countapproved{
+    color:lightgreen;
+}
+#countwait{
+    color:orange;
+}
+#countwarning{
+    color:lightcoral;
+}
+.comments-box{
+
+    border:1px solid lightgrey;
+    border-radius:5px;
+    box-shadow:0px 0px 5px lightgrey;
 }

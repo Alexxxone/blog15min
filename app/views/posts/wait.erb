@@ -3,7 +3,7 @@
 </div>
 
 
-<% @post.each do |post| %>
+<% @posts.each do |post| %>
 
     <div class='span8 post_body post_with<%= post.id%>delete'>
       <h4><%= post.title %></h4>
@@ -17,7 +17,7 @@
         <% end %>
         <p><%= post.body %></p>
         <p>
-          <%= link_to 'Show', post, class: "btn btn-small" %>
+          <%= link_to 'Show comments from admin', post, class: "btn btn-small" %>
           <%- if !current_user.nil? %>
               <%- if current_user.id == post.user_id %>
                   <%= link_to 'Edit', edit_post_path(post), class: "btn btn-small" %>

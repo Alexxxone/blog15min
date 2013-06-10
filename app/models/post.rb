@@ -1,14 +1,31 @@
 class Post < ActiveRecord::Base
   attr_accessible :body, :data, :title ,:confirmed  ,:tags_attributes ,:tag_ids
-  has_many :comments
+  has_many :comments , dependent: :destroy
   belongs_to :user
   has_many :post_tags
   has_many :tags,:through => :post_tags
   accepts_nested_attributes_for :tags
+  before_save :save_post
+  before_update :save_post
+  attr_accessor :tags_attributes
 
-  hidden = "hidden"
-  scope :not_hidden, where("title NOT LIKE ? ", "%#{hidden}%")
-  scope :user_confirmed, where("confirmed !=0")
-  scope :waitingToApprove,where("confirmed =0")
+
+
+
+
+  scope :not_hidden, where("title NOT LIKE ? ", "%hidden%")
+  scope :user_confirmed, where("confirmed =1")
+  scope :waiting_to_approve, where("confirmed =0")
+  scope :waiting_warning, where("confirmed =2")
+
+
+
+
+
+  def save_post
+    self.tags = tags_attributes.map do |_, tag|
+      Tag.find_or_create_by_name(tag[:name])
+    end
+  end
 end
 

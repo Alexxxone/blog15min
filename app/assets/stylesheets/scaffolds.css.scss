@@ -20,12 +20,14 @@ pre {
 
 a {
   color: #000;
+  text-decoration:none;
   &:visited {
-    color: #666;
+    text-decoration:none;
   }
   &:hover {
-    color: #fff;
-    background-color: #000;
+    text-decoration:none;
+    color: darkgrey;
+    text-shadow:0px 1px 2px #38B3FF;
   }
 }
 
@@ -35,7 +37,7 @@ div {
   }
 }
 
-#notice {
+.notice {
   color: green;
 }
 

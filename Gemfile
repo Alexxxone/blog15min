@@ -21,3 +21,4 @@ gem 'devise'
 gem "cancan"
 gem 'activeadmin'
 gem "meta_search"
+gem 'haml'

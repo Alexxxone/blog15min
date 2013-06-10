@@ -1,11 +1,19 @@
 <div class="row-fluid">
 
-  <div class='span11'>
+  <div class='offset1 span10'>
     <h4><%= @post.title %></h4>
 
-    <p><span class='bold'>Posted :</span><%= @post.data %></p>
+
 
     <p><%= @post.body %></p>
+    <% @post.tags.each do |fa| %>
+        <% if !fa.name.blank? %>
+                      <span class='tag_box'>
+                          <%= link_to fa.name, posts_path(:tag_name => fa.name) %>
+                      </span>
+        <% end %>
+    <% end %>
+    <p class='pull-right' style='font-weight:bold;font-size:10px;'>Posted : <%= time_ago_in_words(@post.created_at) %> ago</p>
   </div>
   <div class='span11 form-actions'>
     <div class="btn-group ">
@@ -31,7 +39,6 @@
 
   <div id='comments'>
     <%- @post.comments.each do |comment| %>
-        <%= "rt" %>
         <%= render :partial => 'comments/comment', :locals => {:comment => comment} %>
     <%- end %>
   </div>

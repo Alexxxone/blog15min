@@ -1,0 +1,20 @@
+=div_for comment do
+  %div.comments-box
+    -if comment.commentable_type=='AdminUser'
+      %div{:style=>'background-color:#D7F6F7;'}
+        %h6
+          Posted
+          =time_ago_in_words(comment.created_at)
+        %br
+        =comment.body
+        %p{style: :'color:lightcoral;'}
+          =comment.commentable.email
+    -else
+      %div
+        %h6
+          Posted
+          =time_ago_in_words(comment.created_at)
+          %br
+          =comment.body
+        %p{style: :'color:lightcoral;'}
+          =comment.commentable.email
