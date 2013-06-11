@@ -23,9 +23,13 @@ class Post < ActiveRecord::Base
 
 
   def save_post
-    self.tags = tags_attributes.map do |_, tag|
-      Tag.find_or_create_by_name(tag[:name])
+    if tags_attributes
+      self.tags = tags_attributes.map do |_, tag|
+        Tag.find_or_create_by_name(tag[:name])
+      end
     end
   end
+
+
 end
 

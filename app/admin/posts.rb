@@ -1,7 +1,26 @@
 ActiveAdmin.register Post do
   filter :title
 
+  batch_action :Confirm do |selection|
+    @posts=Post.where(:id => selection).update_all("confirmed=1")
+    @comments=Comment.where(:post_id => selection).destroy_all
+    respond_to do |format|
+      format.html { redirect_to :back, notice: 'Confirmed' }
+    end
+  end
+
+  batch_action :Abort do |selection|
+    @posts=Post.where(:id => selection).update_all("confirmed=0")
+    respond_to do |format|
+      format.html { redirect_to :back, notice: 'Confirmed' }
+    end
+  end
+
+
+
+
   index do
+    selectable_column
     column :id
     column :title
     column :body

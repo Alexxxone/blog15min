@@ -1,5 +1,8 @@
 ActiveAdmin.register Comment do
 
+
+
+
   index do
     selectable_column
     column :id
@@ -20,7 +23,10 @@ ActiveAdmin.register Comment do
       end
 
 
+     end
   end
-  end
+
+
+
 
 end

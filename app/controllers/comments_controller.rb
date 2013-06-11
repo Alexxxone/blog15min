@@ -41,19 +41,29 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @post = Post.find(params[:post_id])
-    @comment = current_user.comments.new(params[:comment])
-    @comment.post_id=@post.id
+    if !current_user.nil?
+      @post = Post.find(params[:post_id])
+      @comment = current_user.comments.new(params[:comment])
+      @comment.post_id=@post.id
 
-    respond_to do |format|
-      if @comment.save
-         format.html { redirect_to :back, notice: 'Comment was successfully created.' }
-         format.json { render json: @comment, status: :created, location: @comment }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @comment.save
+          format.html { redirect_to :back, notice: 'Comment was successfully created.' }
+          format.json { render json: @comment, status: :created, location: @comment }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @comment.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to :back, alert: 'Only registered users can left comments' }
       end
     end
+
+
+
+
   end
 
   # PUT /comments/1
