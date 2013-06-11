@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     @post= Post.not_hidden.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.haml
       format.json { render json: @post }
     end
   end
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
     @post.tags.build
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # new.html.haml
       format.json { render json: @post }
     end
   end

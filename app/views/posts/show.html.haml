@@ -1,0 +1,29 @@
+.row-fluid
+  .offset1.span10
+    %h4
+      = @post.title
+    %p
+      = @post.body
+    -@post.tags.each do |fa|
+      -if !fa.name.blank?
+        %span.tag_box
+          = link_to "#{fa.name}",posts_path(:tag_name => fa.name)
+    %p.pull-right{:style=>'font-weight:bold;font-size:10px;'}
+      Posted :
+      = time_ago_in_words(@post.created_at)
+      ago
+  .span11.form-actions
+    .btn-group
+      - if !current_user.nil? && current_user.id == @post.user_id
+        = link_to 'Edit', edit_post_path(@post), class: "btn btn-small"
+        = link_to 'Back', posts_path, class: "btn btn-small"
+.span11
+  .span11
+    = form_for [@post, Comment.new], :html => {:class => "form-inline"} do |f|
+      .input-append
+        = f.text_area :body, style: "height:39px;width:680px", :placeholder => "Write your comment here"
+        = f.submit "Add comment", class: "btn", style: " height:50px;"
+  %h2 Comments
+  #comments
+    -@post.comments.each do |comment|
+      = render :partial => 'comments/comment', :locals => {:comment => comment}
