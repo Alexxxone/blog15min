@@ -19,7 +19,8 @@
 .post_header{
 
       color:green;
-
+      height:280px;
+      background-image: url("header.png");
       border-radius: 10px;
 }
 .welc{
