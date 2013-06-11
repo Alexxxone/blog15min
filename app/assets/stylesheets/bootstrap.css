@@ -13,7 +13,7 @@
 .clearfix:before,
 .clearfix:after {
   display: table;
-
+  content: "";
   line-height: 0;
 }
 .clearfix:after {
@@ -163,11 +163,16 @@ textarea {
   a:visited {
     text-decoration: underline;
   }
-
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
   .ir a:after,
   a[href^="javascript:"]:after,
   a[href^="#"]:after {
-   
+    content: "";
   }
   pre,
   blockquote {
@@ -241,7 +246,7 @@ a:focus {
 .row:before,
 .row:after {
   display: table;
-  
+  content: "";
   line-height: 0;
 }
 .row:after {
@@ -337,7 +342,7 @@ a:focus {
 .row-fluid:before,
 .row-fluid:after {
   display: table;
-
+  content: "";
   line-height: 0;
 }
 .row-fluid:after {
@@ -520,7 +525,7 @@ a:focus {
 .container:before,
 .container:after {
   display: table;
-
+  content: "";
   line-height: 0;
 }
 .container:after {
@@ -534,7 +539,7 @@ a:focus {
 .container-fluid:before,
 .container-fluid:after {
   display: table;
-
+  content: "";
   line-height: 0;
 }
 .container-fluid:after {
@@ -721,7 +726,7 @@ dd {
 .dl-horizontal:before,
 .dl-horizontal:after {
   display: table;
-
+  content: "";
   line-height: 0;
 }
 .dl-horizontal:after {
@@ -794,7 +799,7 @@ q:before,
 q:after,
 blockquote:before,
 blockquote:after {
-  
+  content: "";
 }
 address {
   display: block;
@@ -1520,7 +1525,7 @@ textarea.span1,
 .controls-row:before,
 .controls-row:after {
   display: table;
-
+  content: "";
   line-height: 0;
 }
 .controls-row:after {
@@ -1710,7 +1715,7 @@ select:focus:invalid:focus {
 .form-actions:before,
 .form-actions:after {
   display: table;
-
+  content: "";
   line-height: 0;
 }
 .form-actions:after {
@@ -1988,7 +1993,7 @@ legend + .control-group {
 .form-horizontal .control-group:before,
 .form-horizontal .control-group:after {
   display: table;
-
+  content: "";
   line-height: 0;
 }
 .form-horizontal .control-group:after {
@@ -2447,7 +2452,7 @@ input[type="submit"].btn.btn-mini {
 .dropdown-submenu:focus > a > [class^="icon-"],
 .dropdown-submenu:hover > a > [class*=" icon-"],
 .dropdown-submenu:focus > a > [class*=" icon-"] {
-  background-image: url("glyphicons-halflings-white.png");
+  background-image: url("/assets/glyphicons-halflings-white.png");
 }
 .icon-glass {
   background-position: 0      0;
@@ -3163,7 +3168,7 @@ input[type="submit"].btn.btn-mini {
 .nav-tabs:after,
 .nav-pills:after {
   display: table;
-
+  content: "";
   line-height: 0;
 }
 .nav-tabs:after,
@@ -3329,7 +3334,7 @@ input[type="submit"].btn.btn-mini {
 .tabbable:before,
 .tabbable:after {
   display: table;
-
+  content: "";
   line-height: 0;
 }
 .tabbable:after {
@@ -3464,7 +3469,7 @@ input[type="submit"].btn.btn-mini {
 .navbar-inner:before,
 .navbar-inner:after {
   display: table;
-
+  content: "";
   line-height: 0;
 }
 .navbar-inner:after {
@@ -3527,7 +3532,7 @@ input[type="submit"].btn.btn-mini {
 .navbar-form:before,
 .navbar-form:after {
   display: table;
-
+  content: "";
   line-height: 0;
 }
 .navbar-form:after {
@@ -4104,7 +4109,7 @@ input[type="submit"].btn.btn-mini {
 .pager:before,
 .pager:after {
   display: table;
-
+  content: "";
   line-height: 0;
 }
 .pager:after {
@@ -4152,7 +4157,7 @@ input[type="submit"].btn.btn-mini {
 .thumbnails:before,
 .thumbnails:after {
   display: table;
-
+  content: "";
   line-height: 0;
 }
 .thumbnails:after {
@@ -4643,7 +4648,7 @@ a.thumbnail:focus {
 }
 .popover .arrow:after {
   border-width: 10px;
-
+  content: "";
 }
 .popover.top .arrow {
   left: 50%;
@@ -4789,7 +4794,7 @@ a.thumbnail:focus {
 .modal-footer:before,
 .modal-footer:after {
   display: table;
-
+  content: "";
   line-height: 0;
 }
 .modal-footer:after {
@@ -4824,7 +4829,7 @@ a.thumbnail:focus {
   border-top: 4px solid #000000;
   border-right: 4px solid transparent;
   border-left: 4px solid transparent;
-
+  content: "";
 }
 .dropdown .caret {
   margin-top: 8px;
@@ -4943,7 +4948,7 @@ a.thumbnail:focus {
 .navbar-fixed-bottom .dropdown .caret {
   border-top: 0;
   border-bottom: 4px solid #000000;
-
+  content: "";
 }
 .dropup .dropdown-menu,
 .navbar-fixed-bottom .dropdown .dropdown-menu {
@@ -5470,7 +5475,7 @@ button.close {
   .row:before,
   .row:after {
     display: table;
-  
+    content: "";
     line-height: 0;
   }
   .row:after {
@@ -5566,7 +5571,7 @@ button.close {
   .row-fluid:before,
   .row-fluid:after {
     display: table;
-  
+    content: "";
     line-height: 0;
   }
   .row-fluid:after {
@@ -5810,7 +5815,7 @@ button.close {
   .row:before,
   .row:after {
     display: table;
-  
+    content: "";
     line-height: 0;
   }
   .row:after {
@@ -5906,7 +5911,7 @@ button.close {
   .row-fluid:before,
   .row-fluid:after {
     display: table;
-  
+    content: "";
     line-height: 0;
   }
   .row-fluid:after {
