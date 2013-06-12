@@ -21,4 +21,11 @@ gem 'devise'
 gem "cancan"
 gem 'activeadmin'
 gem "meta_search"
+
 gem 'haml'
+
+#tests
+gem 'factory_girl'
+gem 'rspec-rails'
+gem 'capybara'
+gem 'guard-rspec'
