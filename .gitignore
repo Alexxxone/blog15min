@@ -19,3 +19,5 @@
 /config/database.yml
 /assets/stylesheets/bootstrap.css
 /assets/stylesheets/bootstrap.min.css
+/assets/javascripts/bootstrap.min.js
+/assets/javascripts/bootstrap.js
