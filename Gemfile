@@ -25,7 +25,9 @@ gem "meta_search"
 gem 'haml'
 
 #tests
-gem 'factory_girl'
-gem 'rspec-rails'
+gem 'factory_girl_rails'
+gem "rspec-rails"
+gem "rspec"
 gem 'capybara'
 gem 'guard-rspec'
+gem "shoulda-matchers"

@@ -1,12 +1,19 @@
 class Post < ActiveRecord::Base
   attr_accessible :body, :data, :title ,:confirmed  ,:tags_attributes ,:tag_ids
   has_many :comments , dependent: :destroy
+
+  #test
+  validates_presence_of :body, :title,:user_id
+
   belongs_to :user
   has_many :post_tags
   has_many :tags,:through => :post_tags
+
   accepts_nested_attributes_for :tags
+
   before_save :save_post
   before_update :save_post
+
   attr_accessor :tags_attributes
 
 
@@ -29,6 +36,7 @@ class Post < ActiveRecord::Base
       end
     end
   end
+
 
 
 end
