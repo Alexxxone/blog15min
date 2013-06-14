@@ -11,5 +11,6 @@ class AdminUser < ActiveRecord::Base
 
 
   has_many :comments, :as => :commentable, :dependent => :destroy
-
+  #test
+  validates_presence_of :email, :password, :password_confirmation, :remember_me
 end

@@ -1,9 +1,12 @@
 FactoryGirl.define do
 
-  factory :tag do
-    association :post ,:factory => :post
-    sequence(:name) { |n| "name#{n}@mail.ru" }
-  end
+    factory :tag do
+      sequence(:name) { |n| "name#{n}" }
+      created_at Time.now
+      updated_at Time.now
+    end
 
 end
+
+
 

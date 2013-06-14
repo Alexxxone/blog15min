@@ -6,6 +6,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :body, :title,:user_id
 
   belongs_to :user
+
   has_many :post_tags
   has_many :tags,:through => :post_tags
 
@@ -30,7 +31,7 @@ class Post < ActiveRecord::Base
 
 
   def save_post
-    if tags_attributes
+    if tags_attributes.is_a? (Hash)
       self.tags = tags_attributes.map do |_, tag|
         Tag.find_or_create_by_name(tag[:name])
       end

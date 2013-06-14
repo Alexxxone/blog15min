@@ -7,5 +7,6 @@ FactoryGirl.define do
     confirmed 0
   end
 
+
 end
 
