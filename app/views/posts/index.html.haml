@@ -6,7 +6,7 @@
     -post.tags.each do |fa|
       -if !fa.name.blank?
         %span{:class=>"tag_box"}
-          =link_to fa.name, posts_path(:tag_name => fa.name)
+          =link_to fa.name, posts_with_tag_path(:tag_name => fa.name)
     %p
       =post.body
     %p.pull-right{:style=>'font-weight:bold;font-size:10px;'}

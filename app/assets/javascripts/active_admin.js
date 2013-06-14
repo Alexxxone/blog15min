@@ -33,7 +33,6 @@ function admin_send_comment(){
 
     $.ajax({url:'/admin/comments/'+post_id+'/add_comment/', data: {  post_id: post_id, comment: comment}, dataType:"json", type: "get"
     }).success(function(response){
-               console.log(response.text);
             $('#comments_body').val('');
             $('#comments_field').prepend("<p style='color:green;' class='sending_result'>"+response.text+"</p>")
              $('.sending_result').delay(800).slideUp(600);
@@ -45,7 +44,7 @@ function AddAndRenameAdminInput(){
     input = $(".tag-name:last");
     name = input.attr('name');
     var number =  Number(name.replace(/\D+/g,""))+1;                                                    //выбираем число 3 из  post[tags_attributes][3][name] и добавляем 1
-     cloned_input =  input.clone().val('').attr('name','post[tags_attributes]['+number+'][name]');
+    cloned_input =  input.clone().val('').attr('name','post[tags_attributes]['+number+'][name]');
     $(input).after(cloned_input);
 }
 

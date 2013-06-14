@@ -6,11 +6,8 @@ class PostsController < ApplicationController
 
 
   def index
-    if params[:tag_name]
-      @posts = Post.joins(:tags).where(:tags => {:name => params[:tag_name]})
-    end
-
-    respond_to do |format|
+     @posts = Post.joins(:tags).where(:tags => {:name => params[:tag_name]}) if params[:tag_name]
+     respond_to do |format|
       format.html # index.html.haml
       format.json { render json: @posts }
     end
