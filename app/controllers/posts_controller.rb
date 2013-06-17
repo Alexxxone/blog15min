@@ -72,7 +72,9 @@ class PostsController < ApplicationController
 
 
     respond_to do |format|
-      if current_user.id == @post.user_id && @post.update_attributes(params[:post])
+      if @post.update_attributes(params[:post]).blank?
+        format.html { redirect_to @post, notice: 'Fill all inputs' }
+      elsif current_user.id == @post.user_id
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { head :no_content }
       else
@@ -88,21 +90,24 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+    render json: @post
   end
 
   def wait
     @posts = current_user.posts.where("confirmed =2 OR confirmed=0")
+    render :wait
   end
 
 
   #my methods
 
   def count
-    count_wait=current_user.posts.waiting_to_approve.count
-    count_approved=current_user.posts.user_confirmed.count
-    count_warning=current_user.posts.waiting_warning.count
+
+    @count_wait=current_user.posts.waiting_to_approve.count
+    @count_approved=current_user.posts.user_confirmed.count
+    @count_warning=current_user.posts.waiting_warning.count
     respond_to do |format|
-      format.json { render :json => {:countwait => count_wait, :countapproved => count_approved, :countwarning => count_warning } }
+      format.json { render :json => {:countwait => @count_wait, :countapproved => @count_approved, :countwarning => @count_warning } }
     end
 
   end

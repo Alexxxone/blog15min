@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   has_many :comments , dependent: :destroy
 
   #test
-  validates_presence_of :body, :title,:user_id
+  validate :body, :title,:user_id, :presence => true
 
   belongs_to :user
 

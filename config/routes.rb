@@ -18,11 +18,10 @@ Blog15min::Application.routes.draw do
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
 
-    match 'posts/wait/' =>'posts#waitToApprove', :as=> :wait
+    match 'posts/wait/' =>'posts#wait_to_approve', :as=> :wait
     match 'posts/count/' =>'posts#count'
 
-   # match 'posts/:tagname' =>'posts#index', :as=> :tagname
-  #  map.connect "posts/waitToApprove", :controller => 'posts', :action => 'waitToApprove'
+
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
