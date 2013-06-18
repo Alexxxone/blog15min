@@ -100,7 +100,6 @@ class PostsController < ApplicationController
 
 
   #my methods
-
   def count
 
     @count_wait=current_user.posts.waiting_to_approve.count
@@ -119,7 +118,7 @@ class PostsController < ApplicationController
 
   private
   def init_posts
-    @posts ||= Post.not_hidden.user_confirmed
+    @posts ||= Post.not_hidden.user_confirmed.order("created_at DESC").page(params[:page]).per(5)
   end
 
 end

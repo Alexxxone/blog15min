@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id         :integer          not null, primary key
+#  title      :string(255)
+#  body       :text
+#  data       :datetime
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :integer
+#  confirmed  :integer          default(0), not null
+#
+
 require 'spec_helper'
 
 describe Post do

@@ -23,10 +23,20 @@ gem 'activeadmin'
 gem "meta_search"
 
 gem 'haml'
+gem 'kaminari'
+
+
+
+
 
 #tests
-gem 'factory_girl_rails'
-gem "rspec-rails"
-gem 'capybara'
-gem 'guard-rspec'
-gem "shoulda-matchers"
+group :development, :test do
+  gem "selenium-webdriver"
+  gem 'capybara'
+  gem "shoulda-matchers"
+  gem "rspec-rails"
+  gem 'factory_girl_rails'
+  gem "database_cleaner"
+  gem 'annotate'
+
+end

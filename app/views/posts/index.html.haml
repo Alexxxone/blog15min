@@ -1,4 +1,5 @@
-.offset1
+.offset3
+  = paginate @posts
 -@posts.each do |post|
   %div{:class=>"span8 post_body post_with#{post.id}delete"}
     %h4
@@ -18,3 +19,6 @@
       - if current_user.id == post.user_id
         =link_to 'Edit', edit_post_path(post), class: "btn btn-small"
         =link_to 'Destroy', post, class: "btn btn-small remote-delete", data: {confirm: 'Are you sure?'}, name: post.id
+
+
+

@@ -29,7 +29,9 @@ $(document).ready(function(){
         $.post(this.href, { _method: 'delete' }, null, "script");
         var id = $(this).attr('name');
         countPosts();
-        $(".post_with"+id+"delete").hide();
+        $(".post_with"+id+"delete").remove();
+        $(".all_titles").find("a[href='/posts/"+id+"']").next().remove();
+        $(".all_titles").find("a[href='/posts/"+id+"']").remove();
         return false;
     });
 
@@ -49,7 +51,10 @@ function add_tag_form(){
     if( !input.val() == ''){
         name = input.attr('name');
         var number =  Number(name.replace(/\D+/g,""))+1;
-        cloned_input =  input.clone().val('').attr('name','post[tags_attributes]['+number+'][name]');
+        cloned_input =  input.clone().val('').attr({
+            name: 'post[tags_attributes]['+number+'][name]',
+            id: 'post_tags_attributes_'+number+'_name'
+         });
         $(input).after(cloned_input).after("<span class='icon-minus' onclick=\"remove_tag_form(this)\"></span>");
     };
 }

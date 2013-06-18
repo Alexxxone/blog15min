@@ -1,13 +1,31 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id         :integer          not null, primary key
+#  title      :string(255)
+#  body       :text
+#  data       :datetime
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :integer
+#  confirmed  :integer          default(0), not null
+#
+
 class Post < ActiveRecord::Base
   attr_accessible :body, :data, :title ,:confirmed  ,:tags_attributes ,:tag_ids
   has_many :comments , dependent: :destroy
 
   #test
   validate :body, :title,:user_id, :presence => true
+  validates_length_of :body, :within => 10..500
+  validates_length_of :title, :within => 10..150
+  validates_uniqueness_of :title
+  validates_uniqueness_of :body
 
   belongs_to :user
 
-  has_many :post_tags
+  has_many :post_tags, dependent: :destroy
   has_many :tags,:through => :post_tags
 
   accepts_nested_attributes_for :tags
@@ -37,6 +55,8 @@ class Post < ActiveRecord::Base
       end
     end
   end
+
+
 
 
 

@@ -65,6 +65,11 @@ ActiveAdmin.register Post do
 
   end
 
+  member_action :remove_tag do
+    @tag = Tag.find_by_name(params[:name])
+    @tag.destroy
+
+  end
 
 end
      # link_to 'Add Tag','javascript:void(0)',onclick:'AddAndRenameAdminInput()'

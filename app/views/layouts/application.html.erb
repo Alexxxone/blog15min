@@ -2,26 +2,27 @@
 <html>
 <head>
   <title>Blog15min</title>
-   <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+
 <div class="row-fluid">
   <div class="well">
- <h1 class="post_header">
-        <span class='welc'>Welcome on my first blog</span>
- </h1>
-    <%= link_to 'Home', posts_path ,class:"btn btn-small home" %>
+    <h1 class="post_header">
+      <span class='welc'>Welcome on my first blog</span>
+    </h1>
+    <%= link_to 'Home', posts_path, class: "btn btn-small home" %>
     <%- if current_user.nil? %>
-        <%= link_to('Sign in', new_user_session_path, class: "btn btn-small pull-right" ) %>
-        <span class = 'home pull-right'>or</span>
-        <%= link_to('Sign up', new_user_registration_path, class: "btn btn-small pull-right" ) %>
+        <%= link_to('Sign in', new_user_session_path, class: "btn btn-small pull-right") %>
+        <span class='home pull-right'>or</span>
+        <%= link_to('Sign up', new_user_registration_path, class: "btn btn-small pull-right") %>
 
     <% else %>
-       <span class="pull-right" style = "margin-left:10px;"> <%=  current_user.email  %></span>
+        <span class="pull-right" style="margin-left:10px;"> <%= current_user.email %></span>
         <%= link_to 'New Post', new_post_path, class: "btn btn-small" %>
-        <%= link_to 'Posts waiting to be approved',wait_path, class: "btn btn-small" %>
+        <%= link_to 'Posts waiting to be approved', wait_path, class: "btn btn-small" %>
         <span id='countapproved'> </span>
         <span id='countwait'></span>
         <span id='countwarning'></span>
@@ -35,41 +36,45 @@
 
   <% end %>
   <% if alert %>
-      <span class="alert" ><%= alert %></span>
+      <span class="alert"><%= alert %></span>
 
   <% end %>
-    <% if !current_user.nil? %>
-  <div class='span3 pull-right '>
-    <div id="tags">
-       <% @tags.each do |t|%>
-          <% if !t.name.blank? %>
-              <%= link_to t.name, posts_path(:tag_name=>t.name),:style => "font-size:12px;" %>
+  <% if !current_user.nil? %>
+      <div class='span3 pull-right '>
+        <div id="tags">
+          <% @tags.each do |t| %>
+              <% if !t.name.blank? %>
+                  <%= link_to t.name, posts_path(:tag_name => t.name), :style => "font-size:12px;" %>
+              <% end %>
           <% end %>
-      <%  end %>
 
-    </div>
-  </div>
+        </div>
+      </div>
 
-  <div class='span3 pull-right'  id='all_titles'>
-    <h5 >Titles from all posts </h5>
-    <div class="all_titles">
-        <% @posts.first(10).each do |p| %>
-            <%= link_to p.title, post_path(:id=>p.id)  %></br>
-        <% end %>
-    </div>
-  </div>
-   <% end %>
+      <div class='span3 pull-right' id='all_titles'>
+        <h5>Titles from all posts </h5>
+
+        <div class="all_titles">
+          <% @posts.first(10).each do |p| %>
+              <%= link_to p.title, post_path(:id => p.id) %></br>
+          <% end %>
+        </div>
+      </div>
+  <% end %>
 
   <div style="width: 70%;min-height:600px ;">
 
     <%= yield %>
+
   </div>
 
 </div>
 
-     <div class="well footer">
-    <%= link_to("Admin enter", admin_dashboard_path, class:"btn btn-small") %>
-  </div>
+<div class='offset2'><%= paginate @posts %></div>
+
+<div class="well footer">
+  <%= link_to("Admin enter", admin_dashboard_path, class: "btn btn-small") %>
+</div>
 
 
 </body>
