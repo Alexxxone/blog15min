@@ -143,12 +143,6 @@ describe 'POST', :type => :feature, :js=>true do
     end
   end
 
-
-
-
-
-
-
   #
   #context 'Register and back to index' do
   #  it "post_path" do

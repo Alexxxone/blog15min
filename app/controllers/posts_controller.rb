@@ -101,14 +101,15 @@ class PostsController < ApplicationController
 
   #my methods
   def count
+     if !current_user.nil?
+      count_wait ||= current_user.posts.waiting_to_approve.length
+      count_approved ||=current_user.posts.user_confirmed.length
+      count_warning ||=current_user.posts.waiting_warning.length
 
-    @count_wait=current_user.posts.waiting_to_approve.count
-    @count_approved=current_user.posts.user_confirmed.count
-    @count_warning=current_user.posts.waiting_warning.count
-    respond_to do |format|
-      format.json { render :json => {:countwait => @count_wait, :countapproved => @count_approved, :countwarning => @count_warning } }
+      render_to_string :json => {:countwait => count_wait, :countapproved => count_approved, :countwarning => count_warning }
+     else
+       return false
     end
-
   end
 
   private
