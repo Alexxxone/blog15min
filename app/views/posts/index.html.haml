@@ -9,7 +9,7 @@
         %span{:class=>"tag_box"}
           =link_to fa.name, posts_path(:tag_name => fa.name)
     %p
-      =post.body
+      = truncate(post.body, :length => 200)
     %p.pull-right{:style=>'font-weight:bold;font-size:10px;'}
       Posted :
       =time_ago_in_words(post.created_at)

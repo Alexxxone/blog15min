@@ -106,7 +106,7 @@ class PostsController < ApplicationController
       count_approved ||=current_user.posts.user_confirmed.length
       count_warning ||=current_user.posts.waiting_warning.length
 
-      render_to_string :json => {:countwait => count_wait, :countapproved => count_approved, :countwarning => count_warning }
+      render :json => {:countwait => count_wait, :countapproved => count_approved, :countwarning => count_warning }
      else
        return false
     end
