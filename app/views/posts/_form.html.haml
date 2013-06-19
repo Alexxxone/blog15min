@@ -11,11 +11,13 @@
     .field
       = f.label :title
       = f.text_field :title, maxlength: "30", class: "new_post_input"
-      %span.maxsymbols{:style => "display:none;"} *max symbols 30
+      %span.maxsymbols{:style => "display:none;"} *max 150 symbols
       %br
     .field
       =f.label :body
       =f.text_area :body, style: "height:300px;"
+      %span.maxsymbolsbody{:style => "display:none;"}*max 500 symbols
+      %span.current_symbols{:style => "display:none;"}
     .field
       = f.text_field :data, type: 'hidden', value: Time.now
     .field.tag_form

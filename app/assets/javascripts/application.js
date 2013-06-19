@@ -25,6 +25,20 @@ $(document).ready(function(){
     $(".new_post_input").focus(function() {
        $(".maxsymbols").css('color','blue').fadeIn(800).delay(800).fadeOut(800);
     });
+
+    $("#post_body").focus(function() {
+        $(".maxsymbolsbody").css('color','blue').fadeIn(800).delay(800).fadeOut(800);
+    });
+    $("#post_body").focusout(function() {
+        $(".current_symbols").hide();
+    });
+    $("#post_body").keydown(function() {
+        $('.current_symbols').text("current quantity :"+$(this).val().length);
+        $(".maxsymbolsbody").hide();
+        $(".current_symbols").css('color','blue').fadeIn(800);
+    });
+
+
     $('a.remote-delete').click(function() {
         $.post(this.href, { _method: 'delete' }, null, "script");
         var id = $(this).attr('name');

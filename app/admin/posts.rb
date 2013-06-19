@@ -16,10 +16,6 @@ ActiveAdmin.register Post do
     end
   end
 
-
-
-
-
   index do
     selectable_column
     column :id
@@ -39,7 +35,6 @@ ActiveAdmin.register Post do
 
   action_item :only => :edit do
     link_to('Add Tag','javascript:void(0)',onclick:'AddAndRenameAdminInput()')
-
   end
 
   action_item :only => :edit do
@@ -65,12 +60,4 @@ ActiveAdmin.register Post do
 
   end
 
-  member_action :remove_tag do
-    @tag = Tag.find_by_name(params[:name])
-    @tag.destroy
-
-  end
-
 end
-     # link_to 'Add Tag','javascript:void(0)',onclick:'AddAndRenameAdminInput()'
-     # link_to 'Remove Tag','javascript:void(0)',onclick:'RemoveAdminInput()'
